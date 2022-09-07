@@ -4,6 +4,8 @@
   "projects": {
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
+    "knight-ui": "apps/knight-ui",
+    "knight-ui-e2e": "apps/knight-ui-e2e",
     "ng-pg": "apps/ng-pg",
     "ng-pg-e2e": "apps/ng-pg-e2e"
   }
