@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/directives/src",
+  "prefix": "ng-pg",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/directives"],
+      "options": {
+        "jestConfig": "libs/directives/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/directives/**/*.ts",
+          "libs/directives/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

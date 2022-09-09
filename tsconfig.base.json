@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@ng-pg/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@ng-pg/directives": ["libs/directives/src/index.ts"],
       "@ng-pg/ui": ["libs/ui/src/index.ts"]
     }
   },
