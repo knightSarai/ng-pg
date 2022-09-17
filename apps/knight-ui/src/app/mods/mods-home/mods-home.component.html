@@ -1,4 +1,13 @@
 <ng-pg-divider>
   <h1>Mods Home Component</h1>
 </ng-pg-divider>
-<ng-pg-modal></ng-pg-modal>
+<button type="button" (click)="toggleModal()">Open Modal</button>
+<ng-pg-modal *ngIf="isModalVisible">
+  <ng-container modalTitle>Modal Title</ng-container>
+  <p modalContent>
+    Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+  </p>
+  <ng-container modalFooter>
+    <button class="ui button" type="button" (click)="toggleModal()">Close Modal</button>
+  </ng-container>
+</ng-pg-modal>

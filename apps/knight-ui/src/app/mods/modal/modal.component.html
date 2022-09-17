@@ -1,18 +1,17 @@
-<div class="ui dimmer visible active">
-  <div class="ui modal visible active">
-    <i class="close icon"></i>
+<div class="ui dimmer visible active" (click)="onCloseClick()">
+  <div (click)="$event.stopPropagation()" class="ui modal visible active">
+    <i class="close icon" (click)="onCloseClick()"></i>
     <div class="header">
-      Modal Tile
+      <ng-content select="[modalTitle]"></ng-content>
     </div>
     <div class="content">
-      <p>
-        Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
-      </p>
+      <ng-content select="[modalContent]"></ng-content>
     </div>
     <div class="actions">
-      <button class="ui button">OK</button>
+      <ng-content select="[modalFooter]"></ng-content>
     </div>
-    
+    <div class="actions actions-default">
+      <button class="ui button" (click)="onCloseClick()">OK</button>
+    </div>
   </div>
-  
 </div>
