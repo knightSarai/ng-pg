@@ -1,5 +1,5 @@
 <ng-pg-divider>
-  <h1>Mods Home Component</h1>
+  <h1>Modal Component</h1>
 </ng-pg-divider>
 <button type="button" (click)="toggleModal()">Open Modal</button>
 <ng-pg-modal *ngIf="isModalVisible">
@@ -11,3 +11,7 @@
     <button class="ui button" type="button" (click)="toggleModal()">Close Modal</button>
   </ng-container>
 </ng-pg-modal>
+<ng-pg-divider>
+  <h1>Accordion Component</h1>
+</ng-pg-divider>
+<ng-pg-accordion [items]="accordionItems"></ng-pg-accordion>

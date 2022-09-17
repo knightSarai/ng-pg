@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModsHomeComponent implements OnInit {
   isModalVisible = false;
+  accordionItems = [
+    {title: "Item 1", description: "Description 1"},
+    {title: "Item 2", description: "Description 2"},
+    {title: "Item 3", description: "Description 3"},
+  ]
   constructor() {}
 
   ngOnInit(): void {}
