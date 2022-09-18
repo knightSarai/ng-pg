@@ -1,0 +1,12 @@
+<form #form="ngForm" (submit)="onSubmit($event)">
+ <div class="col-md-6">
+    <label for="term" class="form-label">Search For anything on wiki</label>
+    <input 
+      type="text"
+      name="term"
+      [(ngModel)]="term"
+      class="form-control"
+    >
+  </div>
+</form>
+

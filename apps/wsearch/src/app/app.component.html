@@ -1,1 +1,7 @@
-app works
+<div class="container mt-5">
+  <ng-pg-search-bar (submitted)="onTermSubmitted($event)"></ng-pg-search-bar>
+  <div class="spinner-border mt-2" role="status" *ngIf="loading">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <ng-pg-page-list [pages]="pages"></ng-pg-page-list>
+</div>

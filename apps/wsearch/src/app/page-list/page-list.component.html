@@ -1,0 +1,19 @@
+<table class="table caption-top"
+  *ngIf="pages.length"
+>
+  <caption>List of Pages</caption>
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Word Count</th>
+      <th scope="col">Snippet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let page of pages">
+      <td>{{ page.title }}</td>
+      <td>{{ page.wordCount }}</td>
+      <td>{{ page.snippet }}</td>
+    </tr>
+  </tbody>
+</table>
