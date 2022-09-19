@@ -9,10 +9,12 @@ import { TableHeader, TableRow } from  '../app-interfaces'
 })
 export class TableComponent implements OnInit {
   @Input('class') classNames = ''
-  @Input() data:any = [];
-  @Input() headers:any = [];
+  @Input() data:TableRow[] = [];
+  @Input() headers:TableHeader[] = [];
 
   constructor() {}
 
   ngOnInit(): void {}
 }
+
+

@@ -1,10 +1,12 @@
 export interface TableRow {
-  name: string;
-  age: number;
-  job: string;
-}
+  name:string;
+  age:number;
+  job:string;
+};
 
-export interface TableHeader {
-  key: keyof TableRow;
-  label: string;
+type TableRowKeys = keyof TableRow;
+
+export interface TableHeader  {
+  key:TableRowKeys;
+  label: Capitalize<TableRowKeys>;
 }
