@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { WikipediaService } from './wikipedia.service';
 
-interface WikipediaResponse {
+export interface WikipediaResponse {
   query: {
     search: WikipediaPage[];
   }
@@ -30,9 +30,9 @@ export class AppComponent {
 
   onTermSubmitted(term: string) {
     this.loading = true;
-    this.service.search<WikipediaResponse>(term)
+    this.service.search(term)
       .subscribe(response => {
-        this.pages = response.query.search;
+        this.pages = response;
         this.loading = false;
       })
   }
