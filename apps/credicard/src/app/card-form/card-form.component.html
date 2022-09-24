@@ -1,0 +1,16 @@
+<form [formGroup]="cardForm">
+  <ng-pg-input
+    [control]="cardForm.controls.name"
+    label="Name"
+  >
+  </ng-pg-input>
+</form>
+<div>
+  Fom Contents: {{ cardForm.value | json }}
+</div>
+<div>
+  Form is valid: {{ cardForm.valid }}
+</div>
+<div>
+  {{ cardForm.controls['name'].errors | json }}
+</div>
