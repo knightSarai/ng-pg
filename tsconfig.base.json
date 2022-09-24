@@ -17,6 +17,7 @@
     "paths": {
       "@ng-pg/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@ng-pg/directives": ["libs/directives/src/index.ts"],
+      "@ng-pg/prisma": ["libs/prisma/src/index.ts"],
       "@ng-pg/ui": ["libs/ui/src/index.ts"]
     },
     "strictPropertyInitialization": false

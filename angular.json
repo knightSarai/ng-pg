@@ -11,6 +11,7 @@
     "knight-ui-e2e": "apps/knight-ui-e2e",
     "ng-pg": "apps/ng-pg",
     "ng-pg-e2e": "apps/ng-pg-e2e",
+    "prisma": "libs/prisma",
     "ui": "libs/ui",
     "wsearch": "apps/wsearch",
     "wsearch-e2e": "apps/wsearch-e2e"
