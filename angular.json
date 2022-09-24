@@ -4,6 +4,8 @@
   "projects": {
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
+    "credicard": "apps/credicard",
+    "credicard-e2e": "apps/credicard-e2e",
     "directives": "libs/directives",
     "knight-ui": "apps/knight-ui",
     "knight-ui-e2e": "apps/knight-ui-e2e",
