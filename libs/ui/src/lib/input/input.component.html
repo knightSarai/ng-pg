@@ -4,21 +4,21 @@
   </label>
   <input 
     [formControl]="control" 
-    type="" 
-    name=""
-    value=""
+    [ngClass]="{ 'is-danger': showErrors()}"
+    [type]="type"
+    [name]="label"
   >
-  <ng-container *ngIf="control.errors">
-    <div *ngIf="control.errors['required']">
+  <ng-container *ngIf="showErrors()">
+    <div class="help is-danger" *ngIf="control.errors && control.errors['required']">
       Value is required
     </div>
-    <div *ngIf="control.errors['minlength']">
+    <div class="help is-danger" *ngIf="control.errors && control.errors['minlength']">
       Value should be at least {{ control.errors['minlength'].requiredLength }} characters long
     </div>
-    <div *ngIf="control.errors['email']">
+    <div class="help is-danger" *ngIf="control.errors && control.errors['email']">
       Value should be a valid email
     </div>
-    <div *ngIf="control.errors['pattern']">
+    <div class="help is-danger" *ngIf="control.errors && control.errors['pattern']">
       Invalid value
     </div>
   </ng-container>
