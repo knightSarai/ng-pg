@@ -1,7 +1,13 @@
-<form [formGroup]="cardForm">
-  <ng-pg-input
-    [control]="cardForm.controls.name"
-    label="Name"
+<form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+  <ng-pg-input [control]="cardForm.controls.name" label="Name"></ng-pg-input>
+  <ng-pg-input [control]="cardForm.controls.number" label="Card Number"></ng-pg-input>
+  <ng-pg-input [control]="cardForm.controls.expiration" label="Expiration (MM/YY)"></ng-pg-input>
+  <ng-pg-input [control]="cardForm.controls.securityCode" label="Security Code"></ng-pg-input>
+  <button 
+    class="button is-primary"
+    [disabled]="cardForm.invalid"
+    type="submit"
   >
-  </ng-pg-input>
+    OK
+  </button>
 </form>
