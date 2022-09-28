@@ -2,7 +2,12 @@ import { FormControl } from '@angular/forms';
 
 export class DateFormControl extends FormControl{
 
-  override setValue(value: string, options: any){
+  override setValue(value: string | null, options: any){
+    if (!value) {
+      super.setValue(value, options);
+      return;
+    }
+
     if (value.match(/[^0-9|\/]/gi) || value.length > 5) {
       this.setDateValue(this.value, options);
       return;

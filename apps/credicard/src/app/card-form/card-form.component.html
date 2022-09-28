@@ -1,13 +1,40 @@
-<form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
-  <ng-pg-input [control]="cardForm.controls.name" label="Name"></ng-pg-input>
-  <ng-pg-input [control]="cardForm.controls.number" label="Card Number"></ng-pg-input>
-  <ng-pg-input [control]="cardForm.controls.expiration" label="Expiration (MM/YY)"></ng-pg-input>
-  <ng-pg-input [control]="cardForm.controls.securityCode" label="Security Code"></ng-pg-input>
-  <button 
-    class="button is-primary"
-    [disabled]="cardForm.invalid"
-    type="submit"
-  >
-    OK
-  </button>
-</form>
+<div class="columns mt-6">
+  <div class="column">
+    <ng-pg-card 
+      [name]="cardForm.controls.name.value"
+      [number]="cardForm.controls.number.value"
+      [expiration]="cardForm.controls.expiration.value"
+    >
+    </ng-pg-card>
+  </div>
+  <div class="column">
+    <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+      <ng-pg-input [control]="cardForm.controls.name" label="Name"></ng-pg-input>
+      <ng-pg-input [control]="cardForm.controls.number" label="Card Number"></ng-pg-input>
+      <div class="columns">
+        <div class="column">
+          <ng-pg-input [control]="cardForm.controls.expiration" label="Expiration (MM/YY)"></ng-pg-input>
+        </div>
+        <div class="column">
+          <ng-pg-input [control]="cardForm.controls.securityCode" label="Security Code"></ng-pg-input>
+        </div>
+      </div>
+      <div class="buttons">
+        <button 
+          class="button is-primary"
+          [disabled]="cardForm.invalid"
+          type="submit"
+        >
+          OK
+        </button>
+        <button 
+          class="button is-warning"
+          type="button"
+          (click)="cardForm.reset()"
+        >
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

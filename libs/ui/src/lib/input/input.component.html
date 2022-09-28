@@ -1,13 +1,16 @@
-<div class="filed">
+<div class="field">
   <label class="label">
     {{ label }}
   </label>
-  <input 
-    [formControl]="control" 
-    [ngClass]="{ 'is-danger': showErrors()}"
-    [type]="type"
-    [name]="label"
-  >
+  <div class="control">
+    <input 
+      [formControl]="control" 
+      [ngClass]="{ 'is-danger': showErrors()}"
+      [type]="type"
+      [name]="label"
+      class="input"
+    >
+  </div>
   <ng-container *ngIf="showErrors()">
     <div class="help is-danger" *ngIf="control.errors && control.errors['required']">
       Value is required
