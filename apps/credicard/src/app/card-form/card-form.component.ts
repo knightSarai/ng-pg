@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DateFormControl } from '../date-form-control';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class CardFormComponent implements OnInit {
         Validators.maxLength(16),
       ] 
     }),
-    expiration: new FormControl('', {
+    expiration: new DateFormControl('', {
       nonNullable:true,
       validators: [
         Validators.required,
