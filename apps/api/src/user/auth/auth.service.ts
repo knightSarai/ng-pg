@@ -1,4 +1,4 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable, BadRequestException, UnprocessableEntityException} from '@nestjs/common';
 import { UserService } from '../user.service';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
@@ -40,6 +40,18 @@ export class AuthService {
     }
       return user;
 
+  }
+
+  async username(username: string) {
+    const user = await this.userService.user({username});
+
+    if (user) {
+      throw new UnprocessableEntityException('Username already exists');
+    }
+
+    return {
+      available: true
+    };
   }
 }
 

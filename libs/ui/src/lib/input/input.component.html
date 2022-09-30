@@ -24,6 +24,9 @@
     <div class="help is-danger" *ngIf="control.errors && control.errors['pattern']">
       Invalid value
     </div>
+    <div class="help is-danger" *ngIf="control.errors && control.errors['unique']">
+      Value is being used, please choose another
+    </div>
   </ng-container>
 </div>
 

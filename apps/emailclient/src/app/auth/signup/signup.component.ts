@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchPassword } from '../../validators/match-password';
+import { UniqueUsername } from '../../validators/unique-username';
 
 @Component({
   selector: 'ng-pg-signup',
@@ -17,6 +18,7 @@ export class SignupComponent implements OnInit {
         Validators.maxLength(20),
         Validators.pattern(/^[a-z0-9]+$/),
       ],
+      asyncValidators: [this.uniqueUsername.validate],
     }),
     email: new FormControl('', {
       nonNullable: true,
@@ -31,10 +33,13 @@ export class SignupComponent implements OnInit {
       validators: [Validators.required, Validators.minLength(6)],
     })
   }, {
-    validators: [this.matchPassword.validate]
+    validators: [this.matchPassword.validate, ]
   });
 
-  constructor(private matchPassword: MatchPassword) {}
+  constructor(
+    private matchPassword: MatchPassword,
+    private uniqueUsername: UniqueUsername
+  ) {}
 
   ngOnInit(): void {}
 
@@ -49,4 +54,5 @@ export class SignupComponent implements OnInit {
     }
     return false;
   }
+
 }
