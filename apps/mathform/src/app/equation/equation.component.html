@@ -5,6 +5,6 @@
     type="text"
   >
 </form>
-<hr>
-{{ mathForm.errors | json }}
-{{ mathForm.valid }}
+<div class="stats">
+  {{ secondsPerSolution | number: '1.0-3'}} seconds per solution
+</div>

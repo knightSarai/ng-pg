@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MathValidators } from '../math-validators';
-import { delay, filter } from 'rxjs'; 
+import { delay, filter, scan } from 'rxjs'; 
 
 export interface additionParams {
   a: number;
@@ -15,10 +15,13 @@ export interface additionParams {
   styleUrls: ['./equation.component.scss'],
 })
 export class EquationComponent implements OnInit {
+  secondsPerSolution: number;
   mathForm = new FormGroup({
     a: new FormControl(this.randomNumber()),
     b: new FormControl(this.randomNumber()),
-    answer: new FormControl('')
+    answer: new FormControl(null, [
+      Validators.min(0),
+    ])
     
   }, [MathValidators.addition('answer', 'a', 'b')]);
 
@@ -32,17 +35,29 @@ export class EquationComponent implements OnInit {
     return this.mathForm.value.b;
   }
 
+  get answer() {
+    return this.mathForm.value.answer;
+  }
+
   ngOnInit(): void {
     this.mathForm.statusChanges
       .pipe(
         filter(value => value === 'VALID'),
-        delay(100)
+        delay(100),
+        scan(acc => ({
+          numberSolved: acc.numberSolved + 1,
+          startTime: acc.startTime
+        }), 
+        {numberSolved: 0, startTime: new Date()})
       )
-      .subscribe(() => {
+      .subscribe(({numberSolved, startTime}) => {
+        this.secondsPerSolution = 
+          (new Date().getTime() - startTime.getTime()) / numberSolved / 1000;
+
         this.mathForm.reset({
           a: this.randomNumber(),
           b: this.randomNumber(),
-          answer: ''
+          answer: null
         })
     });
   }
