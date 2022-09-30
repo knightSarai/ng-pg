@@ -44,11 +44,20 @@ export class EquationComponent implements OnInit {
       .pipe(
         filter(value => value === 'VALID'),
         delay(100),
-        scan(acc => ({
+        scan((acc) => {
+          if (acc.firstAttempt) {
+            return {
+              firstAttempt: false,
+              startTime: new Date()
+            }
+          }
+          return acc
+        }, {firstAttempt:true, startTime: new Date()}),
+        scan((acc, value)=> ({
           numberSolved: acc.numberSolved + 1,
-          startTime: acc.startTime
+          startTime: value.startTime
         }), 
-        {numberSolved: 0, startTime: new Date()})
+        {numberSolved: 0, startTime: new Date()}),
       )
       .subscribe(({numberSolved, startTime}) => {
         this.secondsPerSolution = 
