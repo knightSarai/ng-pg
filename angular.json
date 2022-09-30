@@ -7,6 +7,8 @@
     "credicard": "apps/credicard",
     "credicard-e2e": "apps/credicard-e2e",
     "directives": "libs/directives",
+    "emailclient": "apps/emailclient",
+    "emailclient-e2e": "apps/emailclient-e2e",
     "knight-ui": "apps/knight-ui",
     "knight-ui-e2e": "apps/knight-ui-e2e",
     "mathform": "apps/mathform",

@@ -1,0 +1,31 @@
+<div class="hero is-small">
+  <div class="hero-body">
+    <h3 class="title">
+      Create an Account
+    </h3>
+    <div class="container is-max-desktop">
+      <form [formGroup]="authForm" (submit)="onSubmit()">
+        <ng-pg-input [control]="authForm.controls.username" label="Username"></ng-pg-input>
+        <ng-pg-input [control]="authForm.controls.email" label="Email" type="email"></ng-pg-input>
+        <ng-pg-input [control]="authForm.controls.password" label="Password" type="password"></ng-pg-input>
+        <ng-pg-input [control]="authForm.controls.passwordConfirmation" label="Confirm Password" type="password"></ng-pg-input>
+        <article 
+          *ngIf="showConfirmPasswordError()"
+          class="message is-danger"
+        >
+          <div class="message-body">
+            Passwords do not match
+          </div>
+        </article>
+        <div class="buttons">
+          <button 
+            class="button is-link"
+            type="submit"
+          >
+            OK
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
