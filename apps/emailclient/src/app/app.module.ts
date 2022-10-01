@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
+import { InboxModule } from './inbox/inbox.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
     HttpClientModule,
     AuthModule,
+    InboxModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

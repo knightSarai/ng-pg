@@ -2,13 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { InboxRoutingModule } from './inbox-routing.module';
-
+import { InboxComponent } from './inbox/inbox.component';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    InboxRoutingModule
-  ]
+  declarations: [InboxComponent],
+  imports: [CommonModule, InboxRoutingModule],
 })
-export class InboxModule { }
+export class InboxModule {}
