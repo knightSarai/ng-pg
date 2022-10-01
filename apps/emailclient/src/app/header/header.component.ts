@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from '@ng-pg/api-interfaces';
 
 @Component({
   selector: 'ng-pg-header',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input() user: User | null;
+
   constructor() {}
 
   ngOnInit(): void {}
