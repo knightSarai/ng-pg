@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '@ng-pg/api-interfaces';
 import { BehaviorSubject, tap } from 'rxjs';
 
@@ -17,7 +18,17 @@ export interface SignupCredentials {
 export class AuthService {
   user$ = new BehaviorSubject<User>({isAuthanticated: false});
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
+
+  changeUserAuth(user:Partial<User>, isAuthanticated: boolean) {
+    this.user$.next({
+      ...user,
+      isAuthanticated
+    });
+  }
 
   setUserWithAuth(user: User) {
     this.user$.next({
@@ -33,13 +44,32 @@ export class AuthService {
   signup(credintials: SignupCredentials) {
     return this.http
       .post<User>('/api/auth/signup', credintials)
-      .pipe(tap(user => this.setUserWithAuth(user)));
+      .pipe(
+        tap(user => this.changeUserAuth(user, true)),
+        tap(() => this.navigateToHome())
+      );
+  }
+
+  signout() {
+    return this.http
+      .post('/api/auth/signout', {})
+      .pipe(
+        tap(() => this.changeUserAuth({}, false)),
+        tap(() => this.router.navigate(['/signin']))
+      );
   }
 
   checkAuth() {
     return this.http
       .get<User>('/api/auth/me')
-      .pipe(tap(user => this.setUserWithAuth(user)));
+      .pipe(
+        tap(user => this.changeUserAuth(user, true)),
+        tap(() => this.navigateToHome())
+      );
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/']);
   }
 
 }

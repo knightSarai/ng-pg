@@ -16,7 +16,7 @@
             </a>
           </ng-container>
           <ng-container *ngIf="user?.isAuthanticated">
-            <a class="button is-primary" routerLink="/signout">
+            <a class="button is-primary" (click)="onSignout()">
               <strong>Sign out</strong>
             </a>
           </ng-container>

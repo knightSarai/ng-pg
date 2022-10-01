@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { User } from '@ng-pg/api-interfaces';
 
 @Component({
@@ -6,10 +6,11 @@ import { User } from '@ng-pg/api-interfaces';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() user: User | null;
+  @Output() signout: EventEmitter<void> = new EventEmitter();
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  onSignout() {
+    this.signout.emit();
+  }
 }

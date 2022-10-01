@@ -1,2 +1,6 @@
-<ng-pg-header [user]="user$ | async"></ng-pg-header>
+<ng-pg-header 
+  [user]="user$ | async"
+  (signout)="signout()"
+>
+</ng-pg-header>
 <router-outlet></router-outlet>
