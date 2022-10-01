@@ -53,27 +53,28 @@ export class SignupComponent implements OnInit {
       .subscribe({
         next: () => {},
         error: (err: HttpErrorResponse) => {
-          console.log(err);
           this.authForm.setErrors({
-            unknownError: {
+            netWorkError: {
               message: err.message || 'Something went wrong'
-            } })
-
-          console.log(this.authForm.errors);
-          
+            }
+          })
         }
       })
   }
 
-  getFormErrorsMessages() {
+  getFormErrorsMessages(): {message: string}[] | null {
     if (this.authForm.errors) {
       const errors = Object
         .values(this.authForm.errors)
         .filter((error)=> {
-          if (error?.field) {
-            return this.authForm.get(error.field)?.touched
-          }
-          return error?.message;
+          if (!error) return false;
+
+          if (error.field) return (
+            this.authForm.get(error.field)?.touched &&
+            error.message
+          )
+          
+          return error.message;
         });
 
       return errors
