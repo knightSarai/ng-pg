@@ -4,13 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
-    AuthModule
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
