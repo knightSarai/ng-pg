@@ -1,5 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchPassword } from '../../validators/match-password';
 import { UniqueUsername } from '../../validators/unique-username';
 import { AuthService } from '../auth.service';
@@ -49,15 +50,35 @@ export class SignupComponent implements OnInit {
     if (this.authForm.invalid) return;
     
     this.authService.signup(this.authForm.getRawValue())
-      .subscribe(response => console.log(response))
+      .subscribe({
+        next: () => {},
+        error: (err: HttpErrorResponse) => {
+          console.log(err);
+          this.authForm.setErrors({
+            unknownError: {
+              message: err.message || 'Something went wrong'
+            } })
+
+          console.log(this.authForm.errors);
+          
+        }
+      })
   }
 
-  showConfirmPasswordError() {
-    const control = this.authForm.get('passwordConfirmation');
-    if (control) {
-      return this.authForm.hasError('passwordsDoNotMatch') && control.touched;
+  getFormErrorsMessages() {
+    if (this.authForm.errors) {
+      const errors = Object
+        .values(this.authForm.errors)
+        .filter((error)=> {
+          if (error?.field) {
+            return this.authForm.get(error.field)?.touched
+          }
+          return error?.message;
+        });
+
+      return errors
     }
-    return false;
+    return null;
   }
 
 }

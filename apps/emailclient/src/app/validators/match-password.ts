@@ -12,6 +12,11 @@ export class MatchPassword implements Validators {
       return null;
     }
 
-    return { passwordsDoNotMatch: true };
+    return { 
+      passwordsDoNotMatch: {
+        message: 'Passwords do not match',
+        field: 'passwordConfirmation',
+      } 
+    };
   }
 }

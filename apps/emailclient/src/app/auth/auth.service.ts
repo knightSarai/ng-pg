@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '@ng-pg/api-interfaces';
 
 
 export interface SignupCredentials {
@@ -7,6 +8,7 @@ export interface SignupCredentials {
   password: string;
   username: string;
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,8 @@ export class AuthService {
   }
 
   signup(credintials: SignupCredentials) {
-    return this.http.post('/api/auth/signup', credintials);
+    return this.http
+      .post<User>('/api/auth/signup', credintials);
   }
 
 }

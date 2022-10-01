@@ -10,11 +10,11 @@
         <ng-pg-input [control]="authForm.controls.password" label="Password" type="password"></ng-pg-input>
         <ng-pg-input [control]="authForm.controls.passwordConfirmation" label="Confirm Password" type="password"></ng-pg-input>
         <article 
-          *ngIf="showConfirmPasswordError()"
-          class="message is-danger"
+          *ngFor="let error of getFormErrorsMessages()"
+           class="message is-danger"
         >
           <div class="message-body">
-            Passwords do not match
+            {{ error.message }}
           </div>
         </article>
         <div class="buttons">

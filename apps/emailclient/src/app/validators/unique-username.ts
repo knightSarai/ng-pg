@@ -25,7 +25,7 @@ export class UniqueUsername implements AsyncValidator {
         if (error.status === 422) {
           return of({ unique: true })
         }
-        return of({ noConnection: true })
+        return of({ offline: true })
       })
     )
   }

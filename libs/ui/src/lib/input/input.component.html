@@ -27,6 +27,10 @@
     <div class="help is-danger" *ngIf="control.errors && control.errors['unique']">
       Value is being used, please choose another
     </div>
+    <div class="help is-danger" *ngIf="control.errors && control.errors['offline']">
+      You are offline
+    </div>
+
   </ng-container>
 </div>
 
