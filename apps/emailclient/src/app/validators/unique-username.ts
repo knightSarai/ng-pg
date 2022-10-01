@@ -5,7 +5,7 @@ import { catchError, map } from "rxjs/operators";
 import { of } from "rxjs";
 
 interface AuthError {
-  statusCode: number;
+  status: number;
   message: string;
   error: string;
 }
@@ -22,7 +22,7 @@ export class UniqueUsername implements AsyncValidator {
     return this.authService.getUserName(value).pipe(
       map(() => null),
       catchError((error: AuthError) => {
-        if (error.statusCode === 422) {
+        if (error.status === 422) {
           return of({ unique: true })
         }
         return of({ noConnection: true })

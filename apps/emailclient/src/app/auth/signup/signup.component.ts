@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatchPassword } from '../../validators/match-password';
 import { UniqueUsername } from '../../validators/unique-username';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'ng-pg-signup',
@@ -33,18 +34,22 @@ export class SignupComponent implements OnInit {
       validators: [Validators.required, Validators.minLength(6)],
     })
   }, {
-    validators: [this.matchPassword.validate, ]
+    validators: [this.matchPassword.validate]
   });
 
   constructor(
     private matchPassword: MatchPassword,
-    private uniqueUsername: UniqueUsername
+    private uniqueUsername: UniqueUsername,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.authForm)
+    if (this.authForm.invalid) return;
+    
+    this.authService.signup(this.authForm.getRawValue())
+      .subscribe(response => console.log(response))
   }
 
   showConfirmPasswordError() {
