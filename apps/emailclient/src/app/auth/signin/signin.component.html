@@ -1,1 +1,31 @@
-<p>signin works!</p>
+<div class="hero is-small">
+  <div class="hero-body">
+    <h3 class="title">
+      Sign In
+    </h3>
+    <div class="container is-max-desktop">
+      <form [formGroup]="authForm" (submit)="onSubmit()">
+        <ng-pg-input [control]="authForm.controls.email" label="Email" type="email"></ng-pg-input>
+        <ng-pg-input [control]="authForm.controls.password" label="Password" type="password"></ng-pg-input>
+        <article 
+          *ngFor="let error of getFormErrorsMessages()"
+           class="message is-danger"
+        >
+          <div class="message-body">
+            {{ error.message }}
+          </div>
+        </article>
+        <div class="buttons">
+          <button 
+            class="button is-link"
+            type="submit"
+            [disabled]="authForm.invalid"
+          >
+            OK
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

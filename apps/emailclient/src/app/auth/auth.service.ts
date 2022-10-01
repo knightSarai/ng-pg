@@ -11,6 +11,11 @@ export interface SignupCredentials {
   username: string;
 }
 
+export interface SigninCredentials {
+  email: string;
+  password: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +44,16 @@ export class AuthService {
 
   getUserName(username: string) {
     return this.http.post<{available: true}>('/api/auth/username', {username});
+  }
+
+  signin(credintials: SigninCredentials) {
+    return this.http
+      .post<User>('/api/auth/signin', credintials)
+      .pipe(
+        tap(user => this.changeUserAuth(user, true)),
+        tap(() => this.navigateToHome())
+      );
+
   }
 
   signup(credintials: SignupCredentials) {
