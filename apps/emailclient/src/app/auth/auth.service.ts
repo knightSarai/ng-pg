@@ -84,7 +84,8 @@ export class AuthService {
   }
 
   navigateToHome() {
-    this.router.navigate(['/']);
+
+    this.router.navigate(['/inbox']);
   }
 
 }
