@@ -1,1 +1,11 @@
-<p>inbox works!</p>
+<div class="container is-fluid">
+  <div class="block"></div>
+  <div class="columns is-mobile">
+    <div class="column is-3">
+      <ng-pg-email-index [emails]="recievedEmails$ | async"></ng-pg-email-index>
+    </div>
+    <div class="column is-9">
+      email
+    </div>
+  </div>
+</div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { EmailService } from '../email.service';
+import { RecievedEmail } from '@ng-pg/api-interfaces';
 
 @Component({
   selector: 'ng-pg-inbox',
@@ -6,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inbox.component.scss'],
 })
 export class InboxComponent implements OnInit {
-  constructor() {}
+  recievedEmails$: Observable<RecievedEmail[]>;
 
-  ngOnInit(): void {}
+  constructor(private emailService: EmailService) {
+  }
+
+  ngOnInit(): void {
+    this.emailService
+      .getEmails()
+    this.recievedEmails$ = this.emailService.recievedEmails$;
+  }
 }

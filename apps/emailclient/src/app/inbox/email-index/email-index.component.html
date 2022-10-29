@@ -1,1 +1,13 @@
-<p>email-index works!</p>
+<aside class="menu">
+  <div class="menu-label">
+    Inbox
+  </div>
+  <ul class="menu-list">
+    <li *ngFor="let email of emails">
+      <a>
+        {{ email.subject }}
+        <div class="is-size-7">{{ email.from }}</div>
+      </a>
+    </li>
+  </ul>
+</aside>
