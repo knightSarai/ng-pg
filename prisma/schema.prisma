@@ -11,11 +11,24 @@ datasource db {
 }
 
 model User {
-  id        Int      @default(autoincrement()) @id
-  username  String   @unique
-  email    String   @unique(map: "sqlite_autoindex_user_1")
-  password String
-  isActive Boolean  @default(true)
-  created  DateTime @default(now())
-  updated  DateTime @updatedAt
+  id         Int      @default(autoincrement()) @id
+  username   String   @unique
+  email      String   @unique(map: "sqlite_autoindex_user_1")
+  password   String
+  isActive   Boolean  @default(true)
+  created    DateTime @default(now())
+  updated    DateTime @updatedAt
+  emails     Email[]
+}
+
+model Email {
+  id            String   @id @default(uuid())
+  subject       String
+  text          String
+  html          String
+  to            String
+  from          String
+  created       DateTime @default(now())
+  createdBy     User     @relation(fields: [createdById], references: [id])
+  createdById   Int
 }
