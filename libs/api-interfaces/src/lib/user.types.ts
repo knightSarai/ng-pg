@@ -2,5 +2,5 @@ export interface User {
   id?: number;
   username?: string;
   email?: string;
-  isAuthanticated: boolean;
+  isAuthanticated: boolean | null;
 }

@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { tap } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 
 @Component({
@@ -12,10 +10,7 @@ export class AppComponent {
   title = 'emailclient';
   user$ = this.authService.user$;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.checkAuth().subscribe();
@@ -24,7 +19,6 @@ export class AppComponent {
   signout() {
     this.authService
       .signout()
-      .pipe(tap(() => this.router.navigate(['/signin'])))
       .subscribe();
   }
 }

@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
+import { Injectable, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '@ng-pg/api-interfaces';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, tap, catchError, of } from 'rxjs';
 
+import { LOCATION } from '@ng-pg/shared'
 
 export interface SignupCredentials {
   email: string;
@@ -21,25 +22,19 @@ export interface SigninCredentials {
   providedIn: 'root'
 })
 export class AuthService {
-  user$ = new BehaviorSubject<User>({isAuthanticated: false});
+  user$ = new BehaviorSubject<User>({isAuthanticated: null});
 
   constructor(
+    @Inject(LOCATION) readonly location: Location,
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {}
 
   changeUserAuth(user:Partial<User>, isAuthanticated: boolean) {
     this.user$.next({
       ...user,
       isAuthanticated
     });
-  }
-
-  setUserWithAuth(user: User) {
-    this.user$.next({
-      ...user,
-      isAuthanticated: true
-    })
   }
 
   getUserName(username: string) {
@@ -70,7 +65,7 @@ export class AuthService {
       .post('/api/auth/signout', {})
       .pipe(
         tap(() => this.changeUserAuth({}, false)),
-        tap(() => this.router.navigate(['/signin']))
+        tap(() => this.location.replace('/signin'))
       );
   }
 
@@ -79,12 +74,14 @@ export class AuthService {
       .get<User>('/api/auth/me')
       .pipe(
         tap(user => this.changeUserAuth(user, true)),
-        tap(() => this.navigateToHome())
+        catchError((error) => {
+          this.changeUserAuth({}, false);
+          return of(error);
+        })
       );
   }
 
   navigateToHome() {
-
     this.router.navigate(['/inbox']);
   }
 

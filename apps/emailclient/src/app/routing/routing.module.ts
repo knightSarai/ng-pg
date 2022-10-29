@@ -10,6 +10,7 @@ const routes: Routes = [
       loadChildren: () => 
         import('../inbox/inbox.module').then(m => m.InboxModule)
     },
+    {"path": "", "redirectTo": "inbox", "pathMatch": "full"},
     { path: '**', component: NotFoundComponent},
 ]
 
