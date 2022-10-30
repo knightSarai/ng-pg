@@ -15,8 +15,7 @@ export class InboxComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.emailService
-      .getEmails()
+    this.emailService.getEmails()
     this.recievedEmails$ = this.emailService.recievedEmails$;
   }
 }
