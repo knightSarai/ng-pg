@@ -3,9 +3,9 @@ POST http://localhost:3333/api/auth/signup
 content-type: application/json
 
 {
-    "username": "knight",
-    "email": "knight.sarai.dev@gmail.com",
-    "password": "1234455."
+    "username": "knight2",
+    "email": "knight.sarai@gmail.com",
+    "password": "qwerty1200"
 }
 
 ### Signin
@@ -19,13 +19,35 @@ content-type: application/json
 
 ### Signout
 POST http://localhost:3333/api/auth/signout
-content-type: application/json
 
-{
-    "email": "knight.sarai.dev2@gmail.com",
-    "password": "1234455."
-}
- 
 ### Get User
 GET http://localhost:3333/api/auth/me
 
+### username
+POST http://localhost:3333/api/auth/username
+content-type: application/json
+
+{
+    "username": "knight"
+}
+
+### email
+POST http://localhost:3333/api/email/
+content-type: application/json
+
+{
+    "subject": "knight",
+    "text": "Hello knight",
+    "to": "knight.sarai.dev@gmail.com"
+}
+
+### Get email
+GET http://localhost:3333/api/email/5b0bbe43-e7ff-422a-8997-4d897d0ed534
+
+### Get Emails
+GET http://localhost:3333/api/email/
+content-type: application/json
+
+### Get Sent emails
+GET http://localhost:3333/api/email/sent/
+content-type: application/json

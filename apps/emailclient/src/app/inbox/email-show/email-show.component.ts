@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Email } from '@ng-pg/api-interfaces';
 
 @Component({
   selector: 'ng-pg-email-show',
   templateUrl: './email-show.component.html',
   styleUrls: ['./email-show.component.scss'],
 })
-export class EmailShowComponent implements OnInit {
-  constructor() {}
+export class EmailShowComponent {
+  email: Email; 
 
-  ngOnInit(): void {}
+  constructor(private route: ActivatedRoute) {
+    this.route.data.subscribe(({ email }) => this.email = email);
+  }
 }

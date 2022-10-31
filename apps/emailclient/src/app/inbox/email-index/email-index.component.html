@@ -4,7 +4,10 @@
   </div>
   <ul class="menu-list">
     <li *ngFor="let email of emails">
-      <a>
+      <a 
+        [routerLink]="email.id"
+        routerLinkActive="is-active"
+      >
         {{ email.subject }}
         <div class="is-size-7">{{ email.from }}</div>
       </a>

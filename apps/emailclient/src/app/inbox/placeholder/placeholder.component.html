@@ -1,0 +1,15 @@
+<section class="hero is-light has-text-centered select-email">
+  <div class="hero-body">
+    <p *ngIf="!message; else customMessage" 
+        class="title"
+    >
+        Select an email to view
+    </p>
+  </div>
+</section>
+
+<ng-template #customMessage>
+  <p class="subtitle">
+    {{ message }}
+  </p>
+</ng-template>
