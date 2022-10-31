@@ -3,7 +3,9 @@ export interface Email {
   from: string;
   to: string;
   subject: string;
+  text: string;
 }
 
-export interface RecievedEmail extends Omit<Email, 'to'> {}
+export interface RecievedEmail extends Omit<Email, 'to' | 'text'> {}
+
 

@@ -7,9 +7,10 @@
       <a 
         [routerLink]="email.id"
         routerLinkActive="is-active"
+        class="trim"
       >
-        {{ email.subject }}
-        <div class="is-size-7">{{ email.from }}</div>
+        {{ email.subject }} 
+        <div class="is-size-7 trim">{{ email.from }}</div>
       </a>
     </li>
   </ul>
