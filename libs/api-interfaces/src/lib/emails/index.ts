@@ -8,4 +8,8 @@ export interface Email {
 
 export interface RecievedEmail extends Omit<Email, 'to' | 'text'> {}
 
+export interface CreateEmail extends Omit<Email, 'id'> {}
 
+export interface EmailForm extends Omit<Email, 'id'> {
+  id?: string;
+}

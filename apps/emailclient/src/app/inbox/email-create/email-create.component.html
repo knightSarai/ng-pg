@@ -1,1 +1,20 @@
-<p>email-create works!</p>
+<button 
+  (click)="openModal()"
+  class="button is-info is-outlined is-large is-fullwidth mb-4"
+>
+  Compose
+</button>
+<ng-pg-modal 
+  *ngIf="showModal"
+  (dismiss)="closeModal()"
+>
+  <ng-container modalTitle>
+    Compose
+  </ng-container>
+  <ng-container>
+    <ng-pg-email-form [email]="email"></ng-pg-email-form>
+  </ng-container>
+  <ng-container modalFooter>
+    <button type="submit" class="button is-success">Send</button>
+  </ng-container>
+</ng-pg-modal>

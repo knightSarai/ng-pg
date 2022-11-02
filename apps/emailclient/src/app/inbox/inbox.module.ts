@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { InboxRoutingModule } from './inbox-routing.module';
 import { InboxComponent } from './inbox/inbox.component';
@@ -9,6 +10,7 @@ import { EmailIndexComponent } from './email-index/email-index.component';
 import { EmailShowComponent } from './email-show/email-show.component';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { UiModule } from '@ng-pg/ui';
+import { EmailFormComponent } from './email-form/email-form.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { UiModule } from '@ng-pg/ui';
     EmailReplyComponent,
     EmailIndexComponent,
     EmailShowComponent,
-    PlaceholderComponent
+    PlaceholderComponent,
+    EmailFormComponent,
   ],
   imports: [
     CommonModule,
     InboxRoutingModule,
-    UiModule
+    UiModule,
+    ReactiveFormsModule,
   ],
 })
 export class InboxModule {}

@@ -3,6 +3,7 @@
     {{ label }}
   </label>
   <div class="control">
+  <ng-container *ngIf="type !== 'textarea'">
     <input 
       [formControl]="control" 
       [ngClass]="{ 'is-danger': showErrors()}"
@@ -10,6 +11,16 @@
       [name]="label"
       class="input"
     >
+  </ng-container>
+  <ng-container *ngIf="type === 'textarea'">
+    <textarea 
+      [formControl]="control" 
+      [ngClass]="{ 'is-danger': showErrors()}"
+      [name]="label"
+      class="textarea"
+    >
+    </textarea>
+  </ng-container>
   </div>
   <ng-container *ngIf="showErrors()">
     <div class="help is-danger" *ngIf="control.errors && control.errors['required']">
