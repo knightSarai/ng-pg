@@ -23,3 +23,8 @@ export class EmailsDto {
   from: string;
 
 }
+
+export class CreateEmailReplyDto {
+  @IsString()
+  text: string;
+}

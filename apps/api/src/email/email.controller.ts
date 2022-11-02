@@ -12,7 +12,7 @@ import { User } from '@prisma/client';
 import { AuthGuard } from '../app/guards/auth.guard';
 import { EmailingService } from './emailing/emailing.service';
 import { CurrentUser } from '../user/decorators/user.decorator';
-import { CreateEmailDto, EmailsDto } from './dtos/email.dto';
+import { CreateEmailDto, CreateEmailReplyDto,  EmailsDto } from './dtos/email.dto';
 import { EmailService } from './email.service';
 import { Serialize } from '../app/interceptors/serialize.interceptor';
 
@@ -57,5 +57,24 @@ export class EmailController {
     }
 
     return email
+  }
+
+  @Post('/:id/reply')
+  async reply(@CurrentUser() user: User, @Param('id') id: string, @Body() EmailReply: CreateEmailReplyDto) {
+    return await this.emailingService.replyEmail(id, EmailReply, user)
+  }
+
+  @Get('/:id/replies')
+  async replies(@CurrentUser() user: User, @Param('id') id: string) {
+    const email =  await this.emailService.email({id})
+    if (!email) {
+      throw new NotFoundException('Not Found Email');
+    }
+
+    if (email.to !== user.email && email.from !== user.email) {
+      throw new UnauthorizedException('You are not authorized to view this email');
+    }
+
+    return await this.emailService.replies(id)
   }
 }

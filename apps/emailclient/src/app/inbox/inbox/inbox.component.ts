@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { EmailService } from '../email.service';
-import { RecievedEmail, User } from '@ng-pg/api-interfaces';
+import { EmailForm, RecievedEmail, User } from '@ng-pg/api-interfaces';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({

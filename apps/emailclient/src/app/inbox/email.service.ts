@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Email, RecievedEmail } from '@ng-pg/api-interfaces';
-import { BehaviorSubject } from 'rxjs';
+import { CreateEmail, Email, RecievedEmail } from '@ng-pg/api-interfaces';
+import { BehaviorSubject, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +25,10 @@ export class EmailService {
   getEmails() {
     this.getEmailsHttp()
       .subscribe(emails => this.recievedEmails.next(emails))
+  }
+
+  createEmailHttp(email: CreateEmail) {
+    return this.http
+      .post<Email>('/api/email', email)
   }
 }

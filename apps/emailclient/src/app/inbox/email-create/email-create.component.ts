@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CreateEmail } from '@ng-pg/api-interfaces';
+import { EmailService } from '../email.service';
 
 @Component({
   selector: 'ng-pg-email-create',
@@ -17,7 +18,7 @@ export class EmailCreateComponent implements OnInit {
     text: '',
   }
 
-  constructor() {}
+  constructor(private emailService: EmailService) {}
 
   ngOnInit(): void {
     this.email.from = this.from;
@@ -29,5 +30,11 @@ export class EmailCreateComponent implements OnInit {
 
   openModal() {
     this.showModal = true;
+  }
+  
+  onEmailSend(email: CreateEmail) {
+    this.emailService
+      .createEmailHttp(email)
+      .subscribe(() => this.closeModal())
   }
 }

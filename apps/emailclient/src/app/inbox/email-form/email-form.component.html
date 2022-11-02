@@ -1,4 +1,4 @@
-<form>
+<form (submit)="onSubmit()" [formGroup]="emailForm">
   <ng-pg-input 
     [control]="emailForm.controls.to"
     label="To"
@@ -20,4 +20,11 @@
     type="textarea"
   >
   </ng-pg-input>
+  <button
+    [disabled]="emailForm.invalid"
+    type="submit" 
+    class="button is-info"
+  >
+    Send
+  </button>
 </form>

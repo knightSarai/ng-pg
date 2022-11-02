@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmailForm } from '@ng-pg/api-interfaces';
+
 
 @Component({
   selector: 'ng-pg-email-form',
@@ -9,6 +10,7 @@ import { EmailForm } from '@ng-pg/api-interfaces';
 })
 export class EmailFormComponent implements OnInit {
   @Input() email: EmailForm;
+  @Output() emailSend = new EventEmitter<EmailForm>();
   emailForm: FormGroup<{
     to: FormControl<string>;
     from: FormControl<string>;
@@ -49,6 +51,6 @@ export class EmailFormComponent implements OnInit {
   
   onSubmit() {
     if (this.emailForm.invalid) return;
-    console.log(this.emailForm.value);
+    this.emailSend.emit(this.emailForm.value as EmailForm);
   }
 }
