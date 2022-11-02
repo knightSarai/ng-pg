@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
 import { RoutingModule } from './routing/routing.module';
+import { UiModule } from '@ng-pg/ui'
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { RoutingModule } from './routing/routing.module';
     AuthModule,
     RoutingModule,
     HttpClientModule,
+    UiModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

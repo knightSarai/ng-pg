@@ -1,0 +1,12 @@
+.modal-card-foot:empty {
+  display: none;
+}
+
+.foot-default {
+  display: none;
+}
+
+
+.modal-card-foot:empty + .foot-default {
+  display: block;
+}

@@ -8,6 +8,7 @@ import { EmailReplyComponent } from './email-reply/email-reply.component';
 import { EmailIndexComponent } from './email-index/email-index.component';
 import { EmailShowComponent } from './email-show/email-show.component';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
+import { UiModule } from '@ng-pg/ui';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,10 @@ import { PlaceholderComponent } from './placeholder/placeholder.component';
     EmailShowComponent,
     PlaceholderComponent
   ],
-  imports: [CommonModule, InboxRoutingModule],
+  imports: [
+    CommonModule,
+    InboxRoutingModule,
+    UiModule
+  ],
 })
 export class InboxModule {}
