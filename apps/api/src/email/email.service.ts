@@ -52,7 +52,7 @@ export class EmailService {
     email: Prisma.EmailWhereUniqueInput,
     user: User,
     data: CreateEmailReplyDto
-  ) : Promise<EmailReply> {
+  ) {
     return this.prisma.emailReply.create({
       data: {
         text: data.text,
@@ -65,6 +65,16 @@ export class EmailService {
         email: {
           connect: {
             id: email.id
+          }
+        }
+      },
+      select: {
+        id: true,
+        text: true,
+        createdBy: {
+          select: {
+            id: true,
+            username: true
           }
         }
       }

@@ -14,7 +14,7 @@ content-type: application/json
 
 {
     "email": "knight.sarai.dev@gmail.com",
-    "password": "1234455."
+    "password": "qwerty1200"
 }
 
 ### Signout
@@ -51,3 +51,14 @@ content-type: application/json
 ### Get Sent emails
 GET http://localhost:3333/api/email/sent/
 content-type: application/json
+
+### Reply email
+POST http://localhost:3333/api/email/5b0bbe43-e7ff-422a-8997-4d897d0ed534/reply
+content-type: application/json
+
+{
+    "text": "Reply 2"
+}
+
+### get email replies
+GET http://localhost:3333/api/email/5b0bbe43-e7ff-422a-8997-4d897d0ed534/replies

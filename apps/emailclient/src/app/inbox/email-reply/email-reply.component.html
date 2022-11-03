@@ -1,1 +1,25 @@
-<p>email-reply works!</p>
+<button 
+  (click)="openModal()"
+  class="button is-info is-smail mt-4"
+>
+  Reply
+</button>
+<ng-pg-modal 
+  *ngIf="showModal"
+  (dismiss)="closeModal()"
+>
+  <ng-container modalTitle>
+    Compose
+  </ng-container>
+  <ng-container>
+    <ng-pg-email-form 
+      [email]="email"
+      (emailSend)="onEmailReply($event)"
+    >
+    </ng-pg-email-form>
+  </ng-container>
+  <ng-container modalFooter>
+    <button (click)="closeModal()" type="button" class="button is-warning">Dismiss</button>
+  </ng-container>
+</ng-pg-modal>
+
