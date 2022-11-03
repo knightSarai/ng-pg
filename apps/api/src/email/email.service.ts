@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@ng-pg/prisma';
-import { CreateEmailDto, CreateEmailReplyDto } from './dtos/email.dto';
-import { Prisma, User, Email, EmailReply } from '@prisma/client';
+import { CreateEmailDto } from './dtos/email.dto';
+import { Prisma, User, Email } from '@prisma/client';
 
 @Injectable()
 export class EmailService {
@@ -34,6 +34,9 @@ export class EmailService {
     return this.prisma.email.findMany({
       where: {
         to: email
+      },
+      orderBy: {
+        created: 'desc'
       }
     })
   }
@@ -47,61 +50,4 @@ export class EmailService {
       }
     })
   }
-
-  createReply(
-    email: Prisma.EmailWhereUniqueInput,
-    user: User,
-    data: CreateEmailReplyDto
-  ) {
-    return this.prisma.emailReply.create({
-      data: {
-        text: data.text,
-        html: data.text,
-        createdBy: {
-          connect: {
-            id: user.id
-          }
-        },
-        email: {
-          connect: {
-            id: email.id
-          }
-        }
-      },
-      select: {
-        id: true,
-        text: true,
-        createdBy: {
-          select: {
-            id: true,
-            username: true
-          }
-        }
-      }
-    })
-  }
-
-  replies(emailId: string) {
-    return this.prisma.emailReply.findMany({
-      where: {
-        email: {
-          id: emailId
-        }
-      },
-      orderBy: {
-        created: 'asc'
-      },
-      select: {
-        id: true,
-        text: true,
-        createdBy: {
-          select: {
-            id: true,
-            username: true
-          }
-        }
-      }
-    })
-  }
-
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Email, CreateEmail } from '@ng-pg/api-interfaces';
 import { EmailService } from '../email.service';
 
@@ -10,7 +10,6 @@ import { EmailService } from '../email.service';
 export class EmailReplyComponent implements OnChanges {
   showModal = false;
   @Input() email: Email;
-  @Output() emailReply = new EventEmitter();
 
   constructor(private emailService: EmailService) {}
 
@@ -18,8 +17,8 @@ export class EmailReplyComponent implements OnChanges {
     const text = this.email.text.replace(/\n/gi, '\n> ');
     this.email = {
       ...this.email,
-      from: this.email.from,
-      to: this.email.to,
+      from: this.email.to,
+      to: this.email.from,
       subject: `RE: ${this.email.subject}`,
       text: `\n\n----- ${this.email.from} wrote: -----\n> ${text}`,
     }
@@ -36,13 +35,7 @@ export class EmailReplyComponent implements OnChanges {
 
   onEmailReply(email: CreateEmail) {
     this.emailService
-      .creatReplyHttp({
-        ...email,
-        id: this.email.id,
-      })
-      .subscribe(() => {
-        this.closeModal()
-        this.emailReply.emit()
-      });
+      .createEmailHttp(email)
+      .subscribe(() => this.closeModal());
   }
 }

@@ -19,7 +19,6 @@ model User {
   created    DateTime     @default(now())
   updated    DateTime     @updatedAt
   emails     Email[]
-  EmailReply EmailReply[]
 }
 
 model Email {
@@ -32,16 +31,4 @@ model Email {
   created     DateTime     @default(now())
   createdBy   User         @relation(fields: [createdById], references: [id])
   createdById Int
-  EmailReply  EmailReply[]
-}
-
-model EmailReply {
-  id          String   @id @default(uuid())
-  text        String
-  html        String
-  created     DateTime @default(now())
-  createdBy   User     @relation(fields: [createdById], references: [id])
-  createdById Int
-  email       Email    @relation(fields: [emailId], references: [id])
-  emailId     String
 }

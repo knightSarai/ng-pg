@@ -4,16 +4,5 @@
     <small>{{email.from}}</small>
   </h2>
   <h2 class="subtitle">{{ email.text }}</h2>
-  <ng-container *ngFor="let emailReply of emailReplies">
-    <hr>
-    <h2 class="subtitle">
-      <small>{{emailReply.createdBy.username}}</small>
-    </h2>
-    <h2 class="subtitle">{{ emailReply.text }}</h2>
-  </ng-container>
-  <ng-pg-email-reply 
-    [email]="email"
-    (emailReply)="onEmailReply()"
-  >
-  </ng-pg-email-reply>
+  <ng-pg-email-reply [email]="email"></ng-pg-email-reply>
 </section>
