@@ -6,9 +6,14 @@ import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './modal/modal.component';
 import { BootstrapInputComponent } from './bootstrap-input/bootstrap-input.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    NgbModule
+  ],
   declarations: [
     NotFoundComponent,
     DividerComponent,
@@ -22,6 +27,7 @@ import { BootstrapInputComponent } from './bootstrap-input/bootstrap-input.compo
     InputComponent,
     ModalComponent,
     BootstrapInputComponent,
+    NgbModule
   ],
 })
 export class UiModule {}

@@ -1,13 +1,12 @@
-<div class="container is-fluid">
-  <div class="block"></div>
-  <div class="columns is-mobile">
-    <div class="column is-3">
+<div class="">
+  <div class="row">
+    <div class="col-md-3">
       <ng-container *ngIf="user$ | async as user">
         <ng-pg-email-create [from]="user.email ? user.email: ''"></ng-pg-email-create>
       </ng-container>
       <ng-pg-email-index [emails]="recievedEmails$ | async"></ng-pg-email-index>
     </div>
-    <div class="column is-9">
+    <div class="col-md-9">
       <router-outlet></router-outlet>
     </div>
   </div>

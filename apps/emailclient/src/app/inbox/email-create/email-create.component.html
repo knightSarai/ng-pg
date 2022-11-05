@@ -1,24 +1,23 @@
-<button 
-  (click)="openModal()"
-  class="button is-info is-outlined is-large is-fullwidth mb-4"
->
-  Compose
-</button>
-<ng-pg-modal 
-  *ngIf="showModal"
-  (dismiss)="closeModal()"
->
-  <ng-container modalTitle>
-    Compose
-  </ng-container>
-  <ng-container>
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h3 class="modal-title">Compose</h3>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
     <ng-pg-email-form 
       [email]="email"
       (emailSend)="onEmailSend($event)"
     >
     </ng-pg-email-form>
-  </ng-container>
-  <ng-container modalFooter>
-    <button (click)="closeModal()" type="button" class="button is-warning">Dismiss</button>
-  </ng-container>
-</ng-pg-modal>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-warning" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+<button 
+  (click)="openModal(content)"
+  class="btn btn-primary"
+>
+  Compose
+</button>

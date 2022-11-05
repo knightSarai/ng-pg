@@ -10,6 +10,7 @@ export class BootstrapInputComponent {
   @Input() control: FormControl;
   @Input() label: string;
   @Input() type = 'text';
+  @Input() rows = '5';
 
   showErrors() { 
     const { dirty, touched, errors } = this.control;

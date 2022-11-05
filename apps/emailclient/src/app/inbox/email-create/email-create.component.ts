@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CreateEmail } from '@ng-pg/api-interfaces';
 import { EmailService } from '../email.service';
+import { NgbModal,  NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'ng-pg-email-create',
@@ -8,9 +10,9 @@ import { EmailService } from '../email.service';
   styleUrls: ['./email-create.component.scss'],
 })
 export class EmailCreateComponent implements OnInit {
+  modalRef: NgbModalRef;
   @Input() from = '';
 
-  showModal = false;
   email: CreateEmail = {
     from: '',
     to: '',
@@ -18,18 +20,22 @@ export class EmailCreateComponent implements OnInit {
     text: '',
   }
 
-  constructor(private emailService: EmailService) {}
+  constructor(
+    private emailService: EmailService,
+    private modalService: NgbModal,
+  ) {}
 
   ngOnInit(): void {
     this.email.from = this.from;
   }
 
   closeModal() {
-    this.showModal = false;
+    this.modalRef.close()
   }
 
-  openModal() {
-    this.showModal = true;
+  openModal(content: any) {
+    this.modalRef = this.modalService
+      .open(content, { fullscreen: true })
   }
   
   onEmailSend(email: CreateEmail) {
