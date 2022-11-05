@@ -1,0 +1,43 @@
+<label class="form-control-label">
+  {{ label }}
+</label>
+<div class="input-group has-validation">
+  <ng-container *ngIf="type !== 'textarea'">
+    <input 
+      [formControl]="control" 
+      [ngClass]="{ 'is-invalid': showErrors()}"
+      [type]="type"
+      [name]="label"
+      class="form-control"
+    >
+  </ng-container>
+  <ng-container *ngIf="type === 'textarea'">
+    <textarea 
+      [formControl]="control" 
+      [ngClass]="{ 'is-invalid': showErrors()}"
+      [name]="label"
+      class="form-control"
+    >
+    </textarea>
+  </ng-container>
+  <ng-container *ngIf="showErrors()">
+    <div class="invalid-feedback" *ngIf="control.errors && control.errors['required']">
+      Value is required
+    </div>
+    <div class="invalid-feedback" *ngIf="control.errors && control.errors['minlength']">
+      Value should be at least {{ control.errors['minlength'].requiredLength }} characters long
+    </div>
+    <div class="invalid-feedback" *ngIf="control.errors && control.errors['email']">
+      Value should be a valid email
+    </div>
+    <div class="invalid-feedback" *ngIf="control.errors && control.errors['pattern']">
+      Invalid value
+    </div>
+    <div class="invalid-feedback" *ngIf="control.errors && control.errors['unique']">
+      Value is being used, please choose another
+    </div>
+    <div class="invalid-feedback" *ngIf="control.errors && control.errors['offline']">
+      You are offline
+    </div>
+  </ng-container>
+</div>

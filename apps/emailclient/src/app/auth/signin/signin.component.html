@@ -30,9 +30,9 @@
   </form>
   <div 
     *ngFor="let error of getFormErrorsMessages()"
-    class="alert alert-danger" 
+    class="mt-6 alert alert-danger" 
     role="alert"
   >
-      A simple danger alert—check it out!
+    {{ error.message }}
   </div>
 </div>
