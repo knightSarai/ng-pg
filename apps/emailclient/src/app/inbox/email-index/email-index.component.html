@@ -1,17 +1,17 @@
-<aside class="menu">
-  <div class="menu-label">
-    Inbox
+<div class="container-xl">
+  <h2>Inbox</h2>
+  <div class="list-group">
+    <a
+      *ngFor="let email of emails"
+      [routerLink]="email.id"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action border-0"
+    >
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ email.subject }}</h5>
+        <small>3 days ago</small>
+      </div>
+      <small>{{ email.from }}</small>
+    </a>
   </div>
-  <ul class="menu-list">
-    <li *ngFor="let email of emails">
-      <a 
-        [routerLink]="email.id"
-        routerLinkActive="is-active"
-        class="trim"
-      >
-        {{ email.subject }} 
-        <div class="is-size-7 trim">{{ email.from }}</div>
-      </a>
-    </li>
-  </ul>
-</aside>
+</div>
